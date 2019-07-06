@@ -31,6 +31,7 @@ max(3 * 11, 5**3 ,512-9, 1024**0)
 def print_twice(param):
     print(param)
     print(param)
+
 from chap3 import *
 print_twice("Spam")
 print_twice(5)
@@ -50,13 +51,13 @@ def cat_twice(part1, part2):
 chant1 = "Pie Jesu domine, "
 chant2 = "Dona eis requiem."
 cat_twice(chant1, chant2)
-print(cat) # when cat_twice terminates, the variable cat is destroyed
+#   print(cat) # when cat_twice terminates, the variable cat is destroyed
 
 # stack diagrams (hierarchy of function)
 def print_twice(param):
     print(param)
     print(param)
-    print(cat)
+#   print(cat)
 
 def cat_twice(part1, part2):
     cat = part1 + part2
