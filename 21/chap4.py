@@ -79,11 +79,40 @@ line.draw(window)
 box.draw(window)
 
 #window.getMouse()
-time.sleep(5)
+time.sleep(1.4)
 window.close()
 
 print("after the graphic call")
 
 # exercises
 print(5 % 2)
-print()
+print(5 % 2)
+print(9 % 5)
+print(15 % 12)
+print(12 % 15)
+print(6 % 6)
+print(0 % 7)
+print(7 % 1)
+
+# wrap function
+def compare(x, y):
+    if x < y:
+        print(" %s is less than %s" % (x, y))
+    elif x > y:
+        print(" %s is greater than %s" % (x, y))
+    else:
+        print(" %s and %s are equal" % (x, y))
+compare(1, 2)
+compare(2, 1)
+compare(2, 2)
+
+# boolean expressions
+expression = input("Enter a boolean expression in two variables, p and q: ")
+
+print(" p   q   %s" % (expression))
+length = len(" p   q   %s" % (expression))
+print(length*"=")
+
+for p in True, False:
+    for q in True, False:
+        print("%7s %7s %7s" % (p, q, eval(expression))) # no hypen between % and 7
