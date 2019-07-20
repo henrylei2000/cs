@@ -79,7 +79,7 @@ line.draw(window)
 box.draw(window)
 
 #window.getMouse()
-time.sleep(1.4)
+time.sleep(.3)
 window.close()
 
 print("after the graphic call")
@@ -107,12 +107,22 @@ compare(2, 1)
 compare(2, 2)
 
 # boolean expressions
-expression = input("Enter a boolean expression in two variables, p and q: ")
+#expression = input("Enter a boolean expression in two variables, p and q: ")
 
-print(" p   q   %s" % (expression))
-length = len(" p   q   %s" % (expression))
-print(length*"=")
 
-for p in True, False:
-    for q in True, False:
-        print("%7s %7s %7s" % (p, q, eval(expression))) # no hypen between % and 7
+from p_and_q import truth_table
+for expression in "p or q", "not(p or q)", "p and q", "not(p and q)", "not(p) or not(q)", "not(p) and not(q)":
+    print("\n")
+    truth_table(expression)
+
+for exp in 'True and True', 'True or False','True and False','not(False) and True','True or 7','False or 7','True and 0','False or 8','"true" and False','"happy" or "sad"','"" and "sad"','"happy" and ""':
+    print(exp)
+    if(eval(exp)):
+    	print("true")
+    else:
+    	print("false")
+    print('\n')
+
+
+from ch04e05 import *
+dispatch('b')
