@@ -63,7 +63,7 @@ else:
     print("Invalid choice.")
 
 # Graphics
-from graphics import *
+from packages.graphics import *
 
 window = GraphWin("graphics!", 700, 500)
 
@@ -110,7 +110,7 @@ compare(2, 2)
 #expression = input("Enter a boolean expression in two variables, p and q: ")
 
 
-from p_and_q import truth_table
+from packages.p_and_q import truth_table
 for expression in "p or q", "not(p or q)", "p and q", "not(p and q)", "not(p) or not(q)", "not(p) and not(q)":
     print("\n")
     truth_table(expression)
@@ -124,5 +124,5 @@ for exp in 'True and True', 'True or False','True and False','not(False) and Tru
     print('\n')
 
 
-from ch04e05 import *
+from packages.ch04e05 import *
 dispatch('b')
