@@ -42,8 +42,6 @@ def distance(x1, y1, x2, y2):
 print(distance(1, 2, 4, 6))
 
 # composition (wrapping functions, recycling)
-radius = distance(xc, yc, xp, yp)
-result = area(radius)
 def area2(xc, yc, xp, yp):
     radius = distance(xc, yc, xp, yp)
     result = area(radius)

@@ -110,7 +110,7 @@ compare(2, 2)
 #expression = input("Enter a boolean expression in two variables, p and q: ")
 
 
-from packages.p_and_q import truth_table
+import packages.truth
 for expression in "p or q", "not(p or q)", "p and q", "not(p and q)", "not(p) or not(q)", "not(p) and not(q)":
     print("\n")
     truth_table(expression)
