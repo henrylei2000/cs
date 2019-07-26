@@ -1,4 +1,7 @@
-# experiments for variable and type print
+"""
+experiments for variable and type print
+"""
+
 print(4)
 print("hello, world!")
 message = "What's up, Doc?"
@@ -42,18 +45,26 @@ baked_good = " nut bread"
 print(fruit + baked_good)
 print('fun' * 3)
 
-# input doesn't work with Atom IDE
-# name = input("Please enter your name: ")
-# print("Hi " + name + ", nice to meet you!")
-# age = input("please enter your age: ")
-# if int(age) >= 18:
-#     print("You're such a great young person!")
-# else:
-#     print("You're too young to play the game!")
-#
-# print(age)
-n = input("Please enter your name: ")
-print("Hello,", n)
+
+def io():
+    """
+    input and output
+    :return:
+    """
+    name = input("Please enter your name: ")
+    print("Hi " + name + ", nice to meet you!")
+    age = input("please enter your age: ")
+    if int(age) >= 18:
+        print("You're such a great young person!")
+    else:
+        print("You're too young to play the game!")
+    print(age)
+    n = input("Please enter your name: ")
+    print("Hello,", n)
+
+
+io()
+
 str_seconds = input("Please enter the number of seconds you wish to convert")
 total_secs = int(str_seconds)
 
@@ -62,8 +73,8 @@ secs_still_remaining = total_secs % 3600
 minutes = secs_still_remaining // 60
 secs_finally_remaining = secs_still_remaining % 60
 print(17 + 3)
-#compute the percentage of the hour that has elapsed
-#percentage = (minute * 100) // 60 #caution: integer division
+# compute the percentage of the hour that has elapsed
+# percentage = (minute * 100) // 60 #caution: integer division
 
 # for loop
 for name in ["Alice", "Bjorn", "Cayman", "Duanphen", "esfir", "farah"]:
