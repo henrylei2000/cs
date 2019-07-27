@@ -2,6 +2,8 @@
 experiments for variable and type print
 """
 
+import sys
+
 print(4)
 print("hello, world!")
 message = "What's up, Doc?"
@@ -22,24 +24,24 @@ print("tom's friend")
 print('tom\'s friend')
 
 # number format
-print(1,000,000)
+print(1, 000, 000)
 
 # test True and False keywords
 classes = 5
 true = 3
 print(True)
 x = False
-if(x):
+if (x):
     print(x)
 print(1)
 x = 2
 print(x)
 print(1 + 1)
 cookies = 15
-print(cookies/4)
-print(cookies//4)
-print(99.0/100)
-print(15.0/4)
+print(cookies / 4)
+print(cookies // 4)
+print(99.0 / 100)
+print(15.0 / 4)
 fruit = "banana"
 baked_good = " nut bread"
 print(fruit + baked_good)
@@ -51,8 +53,8 @@ def io():
     input and output
     :return:
     """
-    name = input("Please enter your name: ")
-    print("Hi " + name + ", nice to meet you!")
+    input_name = input("Please enter your name: ")
+    print("Hi " + input_name + ", nice to meet you!")
     age = input("please enter your age: ")
     if int(age) >= 18:
         print("You're such a great young person!")
@@ -86,15 +88,15 @@ print("Those are the people I know.")
 # script mode - no evaluation & print
 range(0, 10)
 
-import sys
+
 print(sys.version_info)
 print(type(range(0, 10)))
-print(list(range(0, 10))) #convert to a list
-print(list(range(2, 3))) #convert to a list, includes 2 but not 3
+print(list(range(0, 10)))  # convert to a list
+print(list(range(2, 3)))  # convert to a list, includes 2 but not 3
 for number in range(0, 10):
     print(number)
 print(list(range(5)))
-print(list(range(0,20,2)))
+print(list(range(0, 20, 2)))
 
 # range and int
 total_str = input("How many numbers should I print? ")
@@ -104,15 +106,15 @@ for number in range(0, total):
 
 start = int(input("Which number should I print first? "))
 stop = int(input("Which number should make the loop stop? "))
-for number in range(start,stop):
+for number in range(start, stop):
     print(number)
 
 # Accumulators
 last_number_str = input("Sum up to what number? ")
 last_number = int(last_number_str)
-sum = 0 # this is our accumalator
-for number in list(range(0, last_number+1)):
-    sum = sum + number
-print("The sum of those numbers is: %d" % (sum)) # +1 to include last_number itself
+total = 0  # this is our accumulator
+for number in list(range(0, last_number + 1)):
+    total = total + number
+print("The sum of those numbers is: %d" % (total))  # +1 to include last_number itself
 
-# REPL mode; command line mode; Python Prompt + Evalation and print
+# REPL mode; command line mode; Python Prompt + Evaluation and print
