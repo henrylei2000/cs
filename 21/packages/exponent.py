@@ -13,13 +13,16 @@ def stupid_answer(x, y):
     return output
 
 
-if my_answer(2, 3) == question(2, 3):
-    print("I'm right!")
-else:
-    print("I'm wrong.")
+def check_answer():
+    """
+     >>> stupid_answer(2 ,3) == question(2, 3)
+     False
+     >>> my_answer(2, 3) == question(2, 3)
+     True
+    """
 
-if stupid_answer(2, 3) == question(2, 3):
-    print("Stupid sometimes could be right!")
-else:
-    print("Stupid is stupid!!!")
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
 

@@ -3,7 +3,6 @@ conditionals: modulus operator
 """
 from packages.graphics import *
 from packages.truth_table import *
-from packages.dispatch import *
 
 quotient = 7 // 3
 print(quotient)
@@ -55,61 +54,6 @@ else:
     print(" %s and %s are equal" % (x, y))
 
 
-def function_a():
-    pass
-
-
-def function_b():
-    pass
-
-
-def function_c():
-    pass
-
-
-choice = 'a'
-if choice == 'a':
-    function_a()
-elif choice == "b":
-    function_b()
-elif choice == "c":
-    function_c()
-else:
-    print("Invalid choice.")
-
-
-"""
-Graphics
-"""
-window = GraphWin("graphics!", 700, 500)
-window.setBackground(color_rgb(130, 0, 230))
-
-circle = Circle(Point(200, 300), 60)
-circle.setFill(color_rgb(230, 0, 130))
-line = Line(Point(100, 100), Point(580, 300))
-box = Rectangle(Point(400, 150), Point(520, 50))
-
-circle.draw(window)
-line.draw(window)
-box.draw(window)
-
-# window.getMouse()
-time.sleep(.3)
-window.close()
-
-print("after the graphic call")
-
-"""
-exercises
-"""
-print(5 % 2)
-print(5 % 2)
-print(9 % 5)
-print(15 % 12)
-print(12 % 15)
-print(6 % 6)
-print(0 % 7)
-print(7 % 1)
 
 
 """
@@ -118,6 +62,12 @@ wrap function
 
 
 def compare(x, y):
+    """
+     >>> compare(2, 3)
+      2 is less than 3
+     >>> compare(5, 1)
+      5 is greater than 1
+    """
     if x < y:
         print(" %s is less than %s" % (x, y))
     elif x > y:
@@ -148,4 +98,30 @@ for exp in 'True and True', 'True or False', 'True and False', 'not(False) and T
     print('\n')
 
 
-dispatch('b')
+
+
+"""
+Graphics
+"""
+window = GraphWin("graphics!", 700, 500)
+window.setBackground(color_rgb(130, 0, 230))
+
+circle = Circle(Point(200, 300), 60)
+circle.setFill(color_rgb(230, 0, 130))
+line = Line(Point(100, 100), Point(580, 300))
+box = Rectangle(Point(400, 150), Point(520, 50))
+
+circle.draw(window)
+line.draw(window)
+box.draw(window)
+
+# window.getMouse()
+time.sleep(.3)
+window.close()
+
+print("after the graphic call")
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

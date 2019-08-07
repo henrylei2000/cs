@@ -78,3 +78,26 @@ def area2(xc, yc, xp, yp):
     radius = distance(xc, yc, xp, yp)
     result = area(radius)
     return result
+
+
+"""
+doctest
+"""
+
+
+def is_divisible_by_2_or_5(n):
+    """
+      >>> is_divisible_by_2_or_5(7)
+      False
+      >>> is_divisible_by_2_or_5(10)
+      True
+    """
+    if n % 2 == 0 or n % 5 == 0:
+        return True
+    else:
+        return False
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
