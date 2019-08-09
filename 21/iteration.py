@@ -51,6 +51,10 @@ def number_of_digits(n):
     return number
 
 
+def number_of_digits_another_way(n):
+    return len(str(n))
+
+
 def number_of_digits_alternative(n):
     minimum = 0
     maximum = 10
@@ -65,8 +69,31 @@ def number_of_digits_alternative(n):
 
 print(number_of_digits(210))
 print(number_of_digits_alternative(1500))
+print(number_of_digits_another_way(40340))
 
 
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
+x = 1
+while x < 13:
+    print('%(first)03d\t%(second)04d\t%(third)05d' % {"first": x, "second": 2**x, "third": 3**x})
+    x += 1
+
+x = 1
+while x <= 6:
+    print("%d " % (x))
+    x += 1
+
+x = 1
+output = ""
+while x <= 6:
+  output += str(x) + "\t" * 2
+  x += 1
+print(output)
+
+i = 1
+output = ""
+while i <= 6:
+  output += str(2*i) + "\t"
+  i += 1
+print(output)
+
+
