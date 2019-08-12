@@ -75,13 +75,12 @@ def compare(x, y):
     else:
         print(" %s and %s are equal" % (x, y))
 
-
 compare(1, 2)
 compare(2, 1)
 compare(2, 2)
 
 # boolean expressions
-# expression = input("Enter a boolean expression in two variables, p and q: ")
+# expression = incoming_list("Enter a boolean expression in two variables, p and q: ")
 
 
 for expression in "p or q", "not(p or q)", "p and q", "not(p and q)", "not(p) or not(q)", "not(p) and not(q)":
@@ -120,8 +119,3 @@ time.sleep(.3)
 window.close()
 
 print("after the graphic call")
-
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()

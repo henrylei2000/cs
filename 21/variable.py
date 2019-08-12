@@ -50,7 +50,7 @@ print('fun' * 3)
 
 def io():
     """
-    input and output
+    incoming_list and output
     :return:
     """
     input_name = input("Please enter your name: ")

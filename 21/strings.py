@@ -1,8 +1,3 @@
-"""
-strings
-"""
-
-
 fruit = "banana"
 letter = fruit[0]
 print(letter)
@@ -97,8 +92,34 @@ print('%(whatever)s has %(number)03d quote types.' % {'whatever': "Python", "num
 print('%s' % "My name is...")
 print('%30s' % "My name is...")
 
-i = 1
-print("i\ti**2\ti**3\ti**5\t\ti**10\ti**20")
-while i <= 10:
-    print("%d\t%6s\t%8d\t%8d\t%d\t%d" % (i, i**2, i**3, i**5, i**10, i**20))
-    i += 1
+
+fruit = "ram12322"
+def f():
+    """
+      >>> type(fruit)
+      <class 'str'>
+      >>> len(fruit)
+      8
+      >>> fruit[:3]
+      'ram'
+    """
+
+x = 18
+
+def f2():
+    """
+      >>> group = "John, Paul, George, and Ringo"
+      >>> group[12:x]
+      'George'
+      >>> group[n:m]
+      'Paul'
+      >>> group[:r]
+      'John'
+      >>> group[s:]
+      'Ringo'
+    """
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

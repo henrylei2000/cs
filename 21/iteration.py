@@ -60,7 +60,7 @@ def number_of_digits_alternative(n):
     maximum = 10
     digits = 1
     if n < minimum:
-        return "invalid input"
+        return "invalid incoming_list"
     while n >= maximum:
         maximum *= 10
         digits += 1
@@ -79,21 +79,44 @@ while x < 13:
 
 x = 1
 while x <= 6:
-    print("%d " % (x))
+    print("%8d " % (x))
     x += 1
 
-x = 1
-output = ""
-while x <= 6:
-  output += str(x) + "\t" * 2
-  x += 1
-print(output)
 
-i = 1
-output = ""
-while i <= 6:
-  output += str(2*i) + "\t"
-  i += 1
-print(output)
+def print_multiples(maximum=9, multiple=2, number_of_tabs=2):
+    x = 1
+    output = ""
+    while x <= maximum:
+      output += str(x*multiple) + "\t" * number_of_tabs
+      x += 1
+    print(output)
 
 
+print_multiples()
+print_multiples(11, 5)
+print_multiples(11, 3, 4)
+
+
+def print_multiplication_table(number, version='simple'):
+    print("demo generalization and encapsulation, multiplication table of %s x %s\n\n" % (number, number))
+    i = 1
+    while i <= number:
+        if version == 'simple':
+            print_multiples(i, i, 2)
+        else:
+            print_multiples(number, i, 2)
+        i += 1
+
+
+print_multiplication_table(19, 'simple')
+
+
+def sqrt(n):
+    approx = n/2.0
+    better = (approx + n/approx)/2.0
+    while better != approx:
+        approx = better
+        better = (approx + n/approx)/2.0
+    return approx
+
+print(sqrt(3))

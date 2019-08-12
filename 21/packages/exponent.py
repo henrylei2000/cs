@@ -20,9 +20,3 @@ def check_answer():
      >>> my_answer(2, 3) == question(2, 3)
      True
     """
-
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
-

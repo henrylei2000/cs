@@ -91,6 +91,3 @@ if 0:
 else:
     print("What's all this, then?")
 
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
