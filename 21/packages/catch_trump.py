@@ -140,12 +140,12 @@ def collision(x1, y1, x2, y2):
 def play():
     window = GraphWin("Catch", 800, 600)
     window.setBackground("yellow")
-    diamond = Image(Point(350, 250), "images/diamond.gif")
+    diamond = Image(Point(350, 250), "../images/diamond.gif")
     diamond.draw(window)
     for number_of_round in range(0, 3):
         ball_x = 10
         ball_y = 300
-        ball = Image(Point(ball_x, ball_y), "images/ball.png")
+        ball = Image(Point(ball_x, ball_y), "../images/ball.png")
         dx = 4
         dy = randint(-4, 4)
         ball.draw(window)
@@ -153,7 +153,7 @@ def play():
         mitt_x = 790
         mitt_y = 300
         mitt_dy = 0
-        mitt = Image(Point(mitt_x, mitt_y), "images/trump-1.png")
+        mitt = Image(Point(mitt_x, mitt_y), "../images/trump-1.png")
         mitt.draw(window)
 
         # the game is over if the user presses Escape, misses the ball,
@@ -189,7 +189,7 @@ def play():
 
               #check if we caught the ball
               if collision(ball_x, ball_y, mitt_x, mitt_y):
-                  mitt = Image(Point(mitt_x, mitt_y), "images/trump-3.png")
+                  mitt = Image(Point(mitt_x, mitt_y), "../images/trump-3.png")
                   mitt.draw(window)
                   game_over = True
               else:
