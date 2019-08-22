@@ -80,10 +80,10 @@ compare(2, 1)
 compare(2, 2)
 
 # boolean expressions
-# expression = incoming_list("Enter a boolean expression in two variables, p and q: ")
+# expression = incoming_list("Enter a boolean expression in two variables, any_other_point and q: ")
 
 
-for expression in "p or q", "not(p or q)", "p and q", "not(p and q)", "not(p) or not(q)", "not(p) and not(q)":
+for expression in "any_other_point or q", "not(any_other_point or q)", "any_other_point and q", "not(any_other_point and q)", "not(any_other_point) or not(q)", "not(any_other_point) and not(q)":
     print("\n")
     truth_table(expression)
 

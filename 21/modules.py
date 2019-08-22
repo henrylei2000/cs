@@ -12,13 +12,16 @@ print(stupid_answer(2, 2))
 print(mod1.question)
 print(mod2.question)
 
+try:
+    myfile = open('packages/test123.dat', 'r')
+    # myfile.write("Now is the time. - Henry\n")
+    # myfile.write("line one\nline two\nline three\n")
+    contents = myfile.read()
+    print(contents)
+    myfile.close()
+except (FileNotFoundError, DivisionByZero):
+    print("no file.")
 
-myfile = open('packages/test.dat', 'r')
-# myfile.write("Now is the time. - Henry\n")
-# myfile.write("line one\nline two\nline three\n")
-contents = myfile.read()
-print(contents)
-myfile.close()
 
 print(ord('a'))
 

@@ -1,6 +1,6 @@
 def truth_table(expression):
-    print(" p   q   %s" % (expression))
-    length = len(" p   q   %s" % (expression))
+    print(" any_other_point   q   %s" % (expression))
+    length = len(" any_other_point   q   %s" % (expression))
     print(length*"=")
 
     for p in True, False:

@@ -2,6 +2,7 @@
 coding exercise on list
 """
 
+from packages.sqtools import *
 
 def our_past():
     horsemen = ["war", "famine", "pestilence", "death"]
@@ -91,7 +92,7 @@ def delete_del(incoming_list, index):
     del incoming_list[index]
     return incoming_list
 
-print(delete_del(list, 0))
+print(delete_simple(list, 0))
 
 print(list)
 
@@ -99,6 +100,14 @@ delete_from_list(['I', 'am', 10], 0)
 
 print(test_for_loop(input))
 print(test(input))
+
+
+my_list = ['a', 'b', 'd', 'e']
+def insert_to_list():
+    print("insert ======")
+    insert_in_middle('c', my_list)
+insert_to_list()
+print(my_list)
 
 
 def objects_and_values():

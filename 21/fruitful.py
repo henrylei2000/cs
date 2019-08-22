@@ -71,8 +71,8 @@ def area2(xc, yc, xp, yp):
     composition (wrapping functions, recycling)
     :param xc: point c
     :param yc: point c
-    :param xp: point p
-    :param yp: point p
+    :param xp: point any_other_point
+    :param yp: point any_other_point
     :return: area
     """
     radius = distance(xc, yc, xp, yp)

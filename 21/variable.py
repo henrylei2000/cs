@@ -55,11 +55,14 @@ def io():
     """
     input_name = input("Please enter your name: ")
     print("Hi " + input_name + ", nice to meet you!")
-    age = input("please enter your age: ")
-    if int(age) >= 18:
-        print("You're such a great young person!")
-    else:
-        print("You're too young to play the game!")
+    try:
+        age = input("please enter your age: ")
+        if int(age) >= 18:
+            print("You're such a great young person!")
+        else:
+            print("You're too young to play the game!")
+    except ValueError:
+        input("Incorrect Input: please enter a number for your age: ")
     print(age)
     n = input("Please enter your name: ")
     print("Hello,", n)
