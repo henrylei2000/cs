@@ -96,3 +96,6 @@ def is_divisible_by_2_or_5(n):
         return True
     else:
         return False
+
+
+

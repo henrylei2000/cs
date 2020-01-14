@@ -68,16 +68,18 @@ def io():
     print("Hello,", n)
 
 
-io()
+# io()
+def convert_seconds():
+    str_seconds = input("Please enter the number of seconds you wish to convert")
+    total_secs = int(str_seconds)
+    hours = total_secs // 3600
+    secs_still_remaining = total_secs % 3600
+    minutes = secs_still_remaining // 60
+    secs_finally_remaining = secs_still_remaining % 60
+    print(17 + 3)
 
-str_seconds = input("Please enter the number of seconds you wish to convert")
-total_secs = int(str_seconds)
+#convert_seconds()
 
-hours = total_secs // 3600
-secs_still_remaining = total_secs % 3600
-minutes = secs_still_remaining // 60
-secs_finally_remaining = secs_still_remaining % 60
-print(17 + 3)
 # compute the percentage of the hour that has elapsed
 # percentage = (minute * 100) // 60 #caution: integer division
 
@@ -102,22 +104,52 @@ print(list(range(5)))
 print(list(range(0, 20, 2)))
 
 # range and int
-total_str = input("How many numbers should I print? ")
-total = int(total_str)
-for number in range(0, total):
-    print(number)
+#total_str = input("How many numbers should I print? ")
+#total = int(total_str)
+#for number in range(0, total):
+#    print(number)
 
-start = int(input("Which number should I print first? "))
-stop = int(input("Which number should make the loop stop? "))
-for number in range(start, stop):
-    print(number)
+#start = int(input("Which number should I print first? "))
+#stop = int(input("Which number should make the loop stop? "))
+#for number in range(start, stop):
+    #print(number)
 
 # Accumulators
-last_number_str = input("Sum up to what number? ")
-last_number = int(last_number_str)
-total = 0  # this is our accumulator
-for number in list(range(0, last_number + 1)):
-    total = total + number
-print("The sum of those numbers is: %d" % (total))  # +1 to include last_number itself
+#last_number_str = input("Sum up to what number? ")
+#last_number = int(last_number_str)
+#total = 0  # this is our accumulator
+#for number in list(range(0, last_number + 1)):
+ #   total = total + number
+#print("The sum of those numbers is: %d" % (total))  # +1 to include last_number itself
+
+# Exercises
+# question 2
+a = "All"
+b = " work"
+c = " and"
+d = " no"
+e = " play"
+f = " makes"
+g = " Jack"
+h = " a"
+i = " dull"
+j = " boy."
+print(a + b + c + d + e + f + g + h + i + j)
+
+# question 7
+odd_string = input("Sum to what number? ")
+last_number = int(odd_string)
+for number in range(0, last_number + 1):
+    if number % 2 != 0:
+        print(number, "")
+
+
+
+
+
+
+
+
+
 
 # REPL mode; command line mode; Python Prompt + Evaluation and print

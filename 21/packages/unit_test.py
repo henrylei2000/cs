@@ -1,3 +1,32 @@
+def compare(a, b):
+    """
+      >>> compare(5, 4)
+      1
+      >>> compare(7, 7)
+      0
+      >>> compare(2, 3)
+      -1
+      >>> compare(42, 1)
+      1
+    """
+    if a > b:
+        return 1
+    elif a == b:
+        return 0
+    else:
+        return -1
+
+
+def even_number(x):
+    if x % 2 == 0:
+        return True
+    else:
+        return False
+
+
+even_number(3)
+
+
 def c2f(t):
     """
       >>> c2f(0)

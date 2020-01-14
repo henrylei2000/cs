@@ -67,6 +67,10 @@ def find(strng, ch):
 fruit = "banana"
 
 
+letter = fruit[-1]
+print(letter)
+
+
 def count(bigstring, ch='a'):
     count = 0
     for char in bigstring:
@@ -103,6 +107,7 @@ def f():
       >>> fruit[:3]
       'ram'
     """
+
 
 x = 18
 
