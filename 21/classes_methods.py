@@ -28,13 +28,11 @@ class Time:
         return (self.hours, self.minutes, self.seconds) == (other.hours, other.minutes, other.seconds)
 
     def __gt__(self, other):
+        print('__gt__ called')
         return (self.hours, self.minutes, self.seconds) > (other.hours, other.minutes, other.seconds)
 
     def __lt__(self, other):
         return (self.hours, self.minutes, self.seconds) < (other.hours, other.minutes, other.seconds)
-
-    def after(self, other):
-        return self > other
 
     def print(self):
         print(str(self.hours) + ":" + str(self.minutes) + ":" + str(self.seconds))
@@ -56,12 +54,12 @@ print(zero_time)
 current_time = Time(9, 18, 23)
 current_time.print()
 
-current_time.increment(500).print()
-doneTime = Time(10, 18, 23)
+current_time.increment(0).print()
+doneTime = Time(10, 9, 20)
 print(current_time + doneTime)
 print(current_time - doneTime)
 
-if doneTime.after(current_time):
+if doneTime > current_time:
     print("The bread will be done after it starts.")
 else:
     print("oops")

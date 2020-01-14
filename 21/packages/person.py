@@ -20,6 +20,7 @@ class Person:
 
 
 def main():
+
     students = []
 
     for i in range(871):
