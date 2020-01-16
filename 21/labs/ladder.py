@@ -6,6 +6,7 @@
 
 
 def ladder():
+    # user input
     text = input("Enter some text: ")
     size = len(text)
     for i in range(size):
