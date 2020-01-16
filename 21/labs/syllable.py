@@ -10,7 +10,6 @@ def syllable():
     word = input("Enter your word: ").lower()
     vowels = ['a', 'e', 'i', 'o', 'u', 'y']
 
-    # initial count
     syllable_count = 0
 
     # rule: the first vowel counts
@@ -26,7 +25,9 @@ def syllable():
     # rule: a word has at least one syllable
     if not syllable_count:
         syllable_count = 1
+
     print("%s has %d syllable(s)." % (word, syllable_count))
 
 
-syllable()
+if __name__ == "__main__":
+    syllable()
