@@ -1,3 +1,6 @@
+import sys
+print(sys.version)
+
 class Card:
     suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
     ranks = ["narf", "Ace", "2", "3", '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
@@ -60,14 +63,15 @@ class Deck:
     def is_empty(self):
         return len(self.cards) == 0
 
-    def deal(self, hands, num_cards=999):
-        num_hands = len(hands)
-        for i in range(num_cards):
-            if self.is_empty():
-                break
-            card = self.pop()
-            hand = hands[i % num_hands]
-            hand.add(card)
+    def deal(self, hands, num_cards = 999):
+        """
+        dealing cards to every hand
+        """
+        count = 0
+        while (not self.is_empty()) and (count < num_cards):
+            for hand in hands:
+                hand.add(self.pop())
+            count += 1
 
 
 card1 = Card(1, 1)
@@ -83,6 +87,3 @@ d.print()
 d.shuffle().print()
 print(d.remove(Card(2, 2)))
 print(card1 < card2)
-
-
-
