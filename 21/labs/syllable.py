@@ -6,9 +6,13 @@
 
 
 def syllable():
+    # user input
     word = input("Enter your word: ").lower()
     vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+
+    # initial count
     syllable_count = 0
+
     # rule: the first vowel counts
     if word[0] in vowels:
         syllable_count = 1
