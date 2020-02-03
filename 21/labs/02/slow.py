@@ -4,7 +4,6 @@ Henry Lei
 Spring 2020
 """
 
-
 def simple_loop():
     length = int(input("Pause length: "))
     text = input("Text: ")
