@@ -1,0 +1,10 @@
+0 student, 94
+1 student, 66
+2 student, 40
+3 student, 80
+4 student, 45
+5 student, 78
+6 student, 96
+7 student, 45
+8 student, 53
+9 student, 86
