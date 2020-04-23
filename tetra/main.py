@@ -336,21 +336,19 @@ class Tetris(SparseGridLayout):
                 self.brick_wall.append([])
                 # update score
                 lines += 1
-                score = str("+%.0f" % (100 * lines * self.level))
-                label = Label(text=score,
-                              bold=True,
-                              font_size="20sp",
-                              pos_hint={'center_x': 0.5, 'center_y': .85},
-                              size_hint=(None, None),
-                              halign="center",
-                              color=(0.9, 0.9, 0.9, 1))
-                self.add_widget(label)
 
-                anim = Animation(opacity=0, duration=2)
-                anim.start(label)
+        if lines:
+            score = str(" " * 30 + "+%.0f" % (100 * lines * self.level))
+            label = Label(text=score,
+                          bold=True,
+                          font_size="40sp",
+                          color=(0.9, 0.9, 0.9, 1))
+            self.add_widget(label)
+            anim = Animation(opacity=0, duration=2)
+            anim.start(label)
 
-        self.points = self.points + 100 * lines * self.level
-        self.lines = self.lines + lines
+            self.points = self.points + 100 * lines * self.level
+            self.lines = self.lines + lines
 
 
         # updates positioning of blocks in flield (move unfilled lines down)

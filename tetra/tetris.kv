@@ -35,13 +35,9 @@
 		StackLayout:
             orientation:"lr-bt"
 			size_hint: .7, 1
-			#width: self.height * 0.5
 			Tetris:
 				id: tetris
 				shape: 20, 10
-				size_hint: 1, 1
-				#width: self.height * 0.5
-				#pos_hint: {'x': .10, 'y': 0}
 				on_game_over: root.manager.current = 'main'
 
 	AnchorLayout:
