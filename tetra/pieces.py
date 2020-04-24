@@ -64,6 +64,8 @@ class Piece(RelativeLayout, GridEntry):
             return LPiece()
         if name is 'J':
             return JPiece()
+        if name is 'J2':
+            return J2Piece()
         if name is 'S':
             return SPiece()
         if name is 'O':
@@ -74,6 +76,8 @@ class Piece(RelativeLayout, GridEntry):
             return IPiece()
         if name is 'Z':
             return ZPiece()
+        if name is 'H':
+            return HPiece()
 
     factory = staticmethod(factory)
 
@@ -197,6 +201,42 @@ class JPiece(Piece):
         super(JPiece, self).shift_right()
 
 
+class J2Piece(Piece):
+    name = StringProperty('J2')
+
+    def shift_left(self):
+        if self.mode in ['up', 'dn']:
+            self.brick_a.pos_hint = {'x': -1, 'y': 0}
+            self.brick_b.pos_hint = {'x': 1, 'y': 0}
+            brick_c_pos = self.brick_c.pos_hint
+            self.brick_c.pos_hint = {'y': brick_c_pos['y'],
+                                     'x': brick_c_pos['x'] * -1}
+        else:
+            self.brick_a.pos_hint = {'x': 0, 'y': 1}
+            self.brick_b.pos_hint = {'x': 0, 'y': -1}
+            brick_c_pos = self.brick_c.pos_hint
+            self.brick_c.pos_hint = {'x': brick_c_pos['x'],
+                'y': brick_c_pos['y'] * -1}
+
+        super(J2Piece, self).shift_left()
+
+    def shift_right(self):
+        if self.mode in ['up', 'dn']:
+            self.brick_a.pos_hint = {'x': -1, 'y': 0}
+            self.brick_b.pos_hint = {'x': 1, 'y': 0}
+            brick_c_pos = self.brick_c.pos_hint
+            self.brick_c.pos_hint = {'x': brick_c_pos['x'],
+                'y': brick_c_pos['y'] * -1}
+        else:
+            self.brick_a.pos_hint = {'x': 0, 'y': 1}
+            self.brick_b.pos_hint = {'x': 0, 'y': -1}
+            brick_c_pos = self.brick_c.pos_hint
+            self.brick_c.pos_hint = {'y': brick_c_pos['y'],
+                                     'x': brick_c_pos['x'] * -1}
+
+        super(J2Piece, self).shift_right()
+
+
 class SPiece(Piece):
 
     def shift_right(self):
@@ -248,6 +288,23 @@ class IPiece(Piece):
             self.brick_b.pos_hint = {'x': 1, 'y': 0}
             self.brick_c.pos_hint = {'x': 2, 'y': 0}
         super(IPiece, self).shift_right()
+
+    def shift_left(self):
+        self.shift_right()
+
+
+class HPiece(Piece):
+    def shift_right(self):
+        if self.mode in ['up', 'dn']:
+            self.brick_a.pos_hint = {'x': -1, 'y': 0}
+            self.brick_b.pos_hint = {'x': 1, 'y': 0}
+            self.brick_c.pos_hint = {'x': 2, 'y': 0}
+        else:
+            self.brick_a.pos_hint = {'x': 0, 'y': -1}
+            self.brick_b.pos_hint = {'x': 0, 'y': 1}
+            self.brick_c.pos_hint = {'x': 0, 'y': 2}
+
+        super(HPiece, self).shift_right()
 
     def shift_left(self):
         self.shift_right()

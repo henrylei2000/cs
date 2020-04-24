@@ -106,7 +106,7 @@ class TetrisScreen(Screen):
 
 
 class TetrisPiece(SparseGridLayout):
-    pieces = ListProperty(['I', 'J', 'L', 'O', 'S', 'T', 'Z'])
+    pieces = ListProperty(['I', 'J', 'L', 'O', 'S', 'T', 'Z', 'H', 'J2', 'L', 'O', 'S', 'T', 'Z'])
     piece_num = NumericProperty(None)
     show_piece = ObjectProperty(None)
     last_piece = ObjectProperty(None)
@@ -122,7 +122,10 @@ class TetrisPiece(SparseGridLayout):
         self.show_piece = Piece.factory(self.pieces[self.piece_num])
         # self.remove_widget(self.show_piece)
         self.show_piece.release_bricks()
-        self.show_piece.row = 3
+        if self.show_piece.name == 'J2':
+            self.show_piece.row = 2
+        else:
+            self.show_piece.row = 3
         self.show_piece.column = 1
         for brick in self.show_piece.bricks:
             # set positioning of brick to align to grid
@@ -145,7 +148,7 @@ class TetrisPiece(SparseGridLayout):
 
 
 class Tetris(SparseGridLayout):
-    pieces = ListProperty(['I', 'J', 'L', 'O', 'S', 'T', 'Z'])
+    pieces = ListProperty(['I', 'J', 'L', 'O', 'S', 'T', 'Z', 'H', 'J2', 'L', 'O', 'S', 'T', 'Z'])
     next_piece = ObjectProperty(None)
     falling_piece = ObjectProperty(None)
     lines = NumericProperty(0)
@@ -224,7 +227,10 @@ class Tetris(SparseGridLayout):
         if self.falling_piece:
             self.get_bricks()
         self.falling_piece = self.next_piece
-        self.falling_piece.row = 19
+        if self.falling_piece.name == 'J2':
+            self.falling_piece.row = 18
+        else:
+            self.falling_piece.row = 19
         self.falling_piece.column = 5
         self.add_widget(self.falling_piece)
         if self.collide_on_start():
@@ -250,12 +256,20 @@ class Tetris(SparseGridLayout):
 
     def set_next(self):
         # generates random next piece to fall
-        self.piece_num = random.randint(0, 6)
+        self.piece_num = random.randint(0, 13)
+        self.piece_num = 8
         random_name = self.pieces[self.piece_num]
         self.next_piece = Piece.factory(random_name)
 
     def drop_falling_fast(self, *args, **kwargs):
         Clock.schedule_interval(self.drop_falling, .005)
+
+    def pause(self):
+        Clock.unschedule(self.drop_falling)
+
+    def resume(self):
+        Clock.unschedule(self.drop_falling)
+        Clock.schedule_interval(self.drop_falling, (1 - (self.level / 100)))
 
     def drop_falling(self, *args, **kwargs):
         if self.collide_falling():
@@ -312,7 +326,7 @@ class Tetris(SparseGridLayout):
             anchor_pos = self.falling_piece.grid_pos
             shift_pos = [anchor_pos[0] + pos['x'],
                          anchor_pos[1] + pos['y']]
-            if shift_pos[1] < 0 or shift_pos[1] >= 10 or shift_pos[0] > 20:
+            if shift_pos[1] < 0 or shift_pos[1] >= 10 or shift_pos[0] > 19:
                 return True
             if self.brick_wall[shift_pos[0]]:
                 if self.brick_wall[shift_pos[0]][shift_pos[1]]:
@@ -338,7 +352,8 @@ class Tetris(SparseGridLayout):
                 lines += 1
 
         if lines:
-            score = str(" " * 30 + "+%.0f" % (100 * lines * self.level))
+            points = 100 * lines * (self.level - 49) + 200 * (lines - 1) * (lines - 1)
+            score = str(" " * 30 + "+%.0f" % points)
             label = Label(text=score,
                           bold=True,
                           font_size="40sp",
@@ -347,8 +362,8 @@ class Tetris(SparseGridLayout):
             anim = Animation(opacity=0, duration=2)
             anim.start(label)
 
-            self.points = self.points + 100 * lines * self.level
-            self.lines = self.lines + lines
+            self.points += points
+            self.lines += lines
 
 
         # updates positioning of blocks in flield (move unfilled lines down)

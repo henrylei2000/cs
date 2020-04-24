@@ -86,7 +86,7 @@
                         rectangle: self.x, self.y, self.width, self.height
 				text: 'lines: ' + str(int(tetris.lines))
 
-			AnchorLayout:
+			BoxLayout:
 				id:direction
 				anchor_x:"center"
                 anchor_y:"center"
@@ -97,8 +97,19 @@
                     size_hint: .8, .10
                     width: self.height * 2
                     pos_hint: {'center_x': .5, 'center_y': .5}
-                    text:'Stop'
-					on_press: app.stop()
+                    text:'Pause'
+					on_press: root.tetris.pause()
+                    font_name: 'Dejavusans'
+                    font_size: 20
+
+                Button:
+					id:resume_button
+					background_color: .259, .522, .957, 1
+                    size_hint: .8, .10
+                    width: self.height * 2
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    text:'Play'
+					on_press: root.tetris.resume()
                     font_name: 'Dejavusans'
                     font_size: 20
 
@@ -154,15 +165,33 @@
     brick_c: brick_c
     Brick:
         id: brick_a
-        pos_hint: {'x': -2, 'y': 0}
-        rgba: root.color
-    Brick:
-        id: brick_b
         pos_hint: {'x': -1, 'y': 0}
         rgba: root.color
     Brick:
-        id: brick_c
+        id: brick_b
         pos_hint: {'x': 1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 2, 'y': 0}
+        rgba: root.color
+
+<HPiece>:
+    color: 52 / 255, 168 / 255, 83 / 255, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -2}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 0, 'y': -3}
         rgba: root.color
 
 <LPiece>:
@@ -199,6 +228,24 @@
     Brick:
         id: brick_c
         pos_hint: {'x': 1, 'y': -1}
+        rgba: root.color
+
+<J2Piece>:
+    color: 234 / 255, 67 / 255, 53 / 255, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': 0, 'y': 1}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': -1, 'y': -1}
         rgba: root.color
 
 <TPiece>:
