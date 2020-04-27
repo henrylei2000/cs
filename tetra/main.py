@@ -2,6 +2,7 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
+from kivy.uix.popup import Popup
 from kivy.animation import Animation
 from tetriscore import SparseGridLayout, GridEntry
 from kivy.uix.screenmanager import Screen, ScreenManager
@@ -257,7 +258,6 @@ class Tetris(SparseGridLayout):
     def set_next(self):
         # generates random next piece to fall
         self.piece_num = random.randint(0, 13)
-        self.piece_num = 8
         random_name = self.pieces[self.piece_num]
         self.next_piece = Piece.factory(random_name)
 
@@ -266,6 +266,10 @@ class Tetris(SparseGridLayout):
 
     def pause(self):
         Clock.unschedule(self.drop_falling)
+        popup = Popup(title='Test popup',
+                      content=Label(text='Hello world'),
+                      size_hint=(None, None), size=(400, 400))
+        #popup.open()
 
     def resume(self):
         Clock.unschedule(self.drop_falling)

@@ -1,0 +1,310 @@
+<Button>:
+	border:0,0,0,0
+
+<MainScreen>:
+    name: 'main'
+	canvas.before:
+        Color:
+            rgba: .259, .522, .957, 1
+        Rectangle:
+            size: root.size
+
+    Button:
+		background_color: .259, .522, .957, 1
+        size_hint: None, .10
+        width: self.height * 2
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        on_release: root.manager.start_tetris()
+        font_name: 'Dejavusans'
+		font_size: 40
+        text: 'Start'
+
+<TetrisScreen>:
+    name: 'tetris'
+    tetris: tetris
+	down_button:down_button
+    canvas.before:
+        Color:
+            rgba: .9, .9, .9, 1 # your color here
+        Rectangle:
+            size: root.size
+
+	AnchorLayout:
+        anchor_x:"left"
+        anchor_y:"bottom"
+		StackLayout:
+            orientation:"lr-bt"
+			size_hint: .7, 1
+			Tetris:
+				id: tetris
+				shape: 40, 20
+				on_game_over: root.manager.current = 'main'
+
+	AnchorLayout:
+        anchor_x:"right"
+        anchor_y:"top"
+        StackLayout:
+            orientation:"lr-tb"
+            size_hint: .3, 1
+            padding: [0, 0, self.width / 4, 0]
+			TetrisPiece:
+				id: tetris_piece
+				piece_num: tetris.piece_num
+				shape: 4, 4
+				size_hint: 1, None
+				height: self.width 
+				pos_hint: {'top': .97, 'right': .97}
+
+			Label:
+				id: points
+				size_hint: 1, .10
+				font_name: 'Dejavusans'
+				font_size: 20
+				halign: 'center'
+				#pos_hint: {'top': .77, 'right': .97}
+				color: 1, 0, 0, 1
+				text: 'score: ' + str(int(tetris.points))
+
+			Label:
+				id: lines
+				size_hint: 1, .10
+				font_name: 'Dejavusans'
+				font_size: 20
+				halign: 'center'
+				#pos_hint: {'top': .77, 'right': .97}
+                color: 1, 0, 0, 1
+				text: 'lines: ' + str(int(tetris.lines))
+
+			BoxLayout:
+				id:direction
+				anchor_x:"center"
+                anchor_y:"center"
+                size_hint: 1, .50
+				Button:
+					id:down_button
+					background_color: .259, .522, .957, 1
+                    size_hint: .8, .10
+                    width: self.height * 2
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    text:'Pause'
+					on_press: root.tetris.pause()
+                    font_name: 'Dejavusans'
+                    font_size: 20
+
+                Button:
+					id:resume_button
+					background_color: .259, .522, .957, 1
+                    size_hint: .8, .10
+                    width: self.height * 2
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    text:'Play'
+					on_press: root.tetris.resume()
+                    font_name: 'Dejavusans'
+                    font_size: 20
+
+<Tetris>:
+    canvas.before:
+        Color:
+			rgba: .45, .45, .45, .8 # your color here
+        Rectangle:
+            size: root.size
+
+<TetrisPiece>:
+    canvas.before:
+        Color:
+            rgba: .9, .9, .9, .6 # your color here
+        Rectangle:
+            size: root.size
+
+<Brick>:
+    rgba: (.9, .1, .1, .9)
+    brick_border: border
+    brick_square: square
+    BrickBorder:
+        id: border
+        canvas.before:
+            Color:
+                rgba: .45, .45, .45, .8 # your color here
+            Line:
+                width: .1
+                rectangle: self.parent.x, self.parent.y, self.parent.width, self.parent.height
+    BrickSquare:
+        id: square
+        canvas.before:
+            Color:
+                rgba: self.parent.rgba # your color here
+            Rectangle:
+                pos: self.parent.pos
+                size: (self.parent.width - 3, self.parent.height - 3)
+
+<Piece>:
+    row: 19
+    column: 5
+    brick_0: brick_0
+    Brick:
+        id: brick_0
+        pos_hint: {'x': 0, 'y': 0}
+        color: root.color
+        rgba: root.color
+
+<IPiece>:
+    color: 1, 1, 1, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': -1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 2, 'y': 0}
+        rgba: root.color
+
+<HPiece>:
+    color: 52 / 255, 168 / 255, 83 / 255, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -2}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 0, 'y': -3}
+        rgba: root.color
+
+<LPiece>:
+    color: .259, .522, .957, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': -1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': -1, 'y': -1}
+        rgba: root.color
+
+<JPiece>:
+    color: .5, .74, .0, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': -1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 1, 'y': -1}
+        rgba: root.color
+
+<J2Piece>:
+    color: 234 / 255, 67 / 255, 53 / 255, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': 0, 'y': 1}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': -1, 'y': -1}
+        rgba: root.color
+
+<TPiece>:
+    color: .01, .65, .94, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': -1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+
+<SPiece>:
+    color: .953, .31, .11, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': 1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': -1, 'y': -1}
+        rgba: root.color
+
+<ZPiece>:
+    color: .255, .0, .576, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': -1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': 1, 'y': -1}
+        rgba: root.color
+
+<OPiece>:
+    color: 1., .75, .01, 1
+    brick_a: brick_a
+    brick_b: brick_b
+    brick_c: brick_c
+    Brick:
+        id: brick_a
+        pos_hint: {'x': -1, 'y': 0}
+        rgba: root.color
+    Brick:
+        id: brick_b
+        pos_hint: {'x': 0, 'y': -1}
+        rgba: root.color
+    Brick:
+        id: brick_c
+        pos_hint: {'x': -1, 'y': -1}
+        rgba: root.color
