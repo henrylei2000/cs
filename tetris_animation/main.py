@@ -181,7 +181,7 @@ class Tetris(SparseGridLayout):
         parts += ['L', 'L', 'O', 'J', 'T']
         parts += ['T', 'S', 'H', 'O', 'L']
         parts += ['J2', 'S', 'S', 'O']
-        parts += ['J2', 'T', 'L', 'S', 'J', 'Z', 'Z', 'T', 'Z']
+        parts += ['J2', 'T', 'L', 'S', 'J', 'Z', 'Z', 'T', 'S']
 
         self.blocks = parts
         self.shape = (40, 20)
