@@ -4,37 +4,23 @@ Henry Lei
 Spring 2020
 """
 
-def simple_loop():
-    length = int(input("Pause length: "))
-    text = input("Text: ")
 
-    for letter in text:
-        print(letter)
-        for i in range(length):
-            print(".")
-
-
-def loop():
-    length = int(input("Pause length: "))
-    text = input("Text: ")
-
-    for letter in text:
-        print(letter + '.' * length)
-
-
-def slow():
-    length = int(input("Pause length: "))
-    text = input("Text: ")
+def slow(length, text):
     output = ""
     for letter in text:
         output += letter + '.' * length
-
-    print(output)
+    return output
 
 
 def main():
+    # receive input
+    length = int(input("Pause length: "))
+    text = input("Text: ")
 
-    output = slow()
+    # process input
+    output = slow(length, text)
+
+    # print output
     print(output)
 
 

@@ -70,7 +70,7 @@ __version__ = "5.0"
 #     * fixed offset problem in window, made canvas borderless
 
 # Version 4.3 4/25/2014
-#     * Fixed Image getPixel to work with Python 3.4, TK 8.6 (tuple style handling)
+#     * Fixed Image getPixel to work with Python 3.4, TK 8.6 (tuple type handling)
 #     * Added interactive keyboard input (getKey and checkKey) to GraphWin
 #     * Modified setCoords to cause redraw of current objects, thus
 #       changing the view. This supports scrolling around via setCoords.
@@ -202,7 +202,6 @@ def update(rate=None):
 
 ############################################################################
 # Graphics classes start here
-
 
 class GraphWin(tk.Canvas):
 
