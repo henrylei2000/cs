@@ -124,7 +124,6 @@ class results(Screen):
         mirror_side.reverse()
         return mirror_side
 
-
     def mirror_x(self, point, center):
         mirror = [point[0], point[1]]
         mirror[0] += (center - point[0]) * 2  # gap

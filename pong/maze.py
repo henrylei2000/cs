@@ -23,29 +23,16 @@ class results(Screen):
 
     def draw(self):
         p1 = [100, 100]
-        p2 = [100, 400]
+        p2 = [200, 400]
         p3 = [400, 400]
-        p4 = [400, 100]
-        points = [p1, p2, p3, p4]
+        p4 = [300, 100]
+        points = [p1, p2, p4]
 
         with self.canvas:
             Color(r(), 1, 1, mode='hsv')
-            Line(points=p1 + p2 + p3 + p4 + p1, width=2)
+            Line(points=p1 + p2 + p4 + p1, width=2)
 
-        self.patternize(points, 0.2)
-
-        p1 = [400, 100]
-        p2 = [400, 400]
-        p3 = [700, 400]
-        p4 = [700, 100]
-        points = [p1, p2, p3, p4]
-
-        with self.canvas:
-            Color(r(), 1, 1, mode='hsv')
-            Line(points=p1 + p2 + p3 + p4 + p1, width=2)
-        self.patternize(points, 0.8)
-
-
+        self.patternize(points, 0.1)
 
         with self.canvas:
             self.rot = Rotate()
@@ -56,7 +43,7 @@ class results(Screen):
             Line(ellipse=(400, 440, 190, 90, 0, 360), width=2)
 
     def patternize(self, points, pace):
-        for i in range(3):
+        for i in range(10):
             # [[x, y], [x, y], [x, y], [x, y]]
 
             if self.too_close(points):
@@ -114,8 +101,8 @@ class results(Screen):
 
 
 class mazeupdateApp(App):
-    Config.set('graphics', 'width', '800')
-    Config.set('graphics', 'height', '600')
+    Config.set('graphics', 'width', '1920')
+    Config.set('graphics', 'height', '1080')
 
     def build(self):
         FadeTransition.clearcolor = (1,1,1,1)
