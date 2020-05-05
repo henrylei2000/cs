@@ -10,7 +10,7 @@ from random import random as r
 from math import *
 
 class results(Screen):
-    reset = NumericProperty(0)
+    color_change = NumericProperty(0)
     anim_pt = ListProperty([])    # this is the line endpoint
     ss = ListProperty([])
 
@@ -23,23 +23,22 @@ class results(Screen):
         t.start()
 
     def draw(self):
-
         c = (960, 540)  # center
-        half_w = 40
-
         ngon = 12
-        # sun = self.draw_ngon(ngon, 290, c)
-        triangles = self.draw_triangle(12, 250, c)
+
+        triangles = self.draw_triangle(ngon, 250, c)
         for i in range(len(triangles)):
             self.patternize(triangles[i], 0.1)
 
-        # self.patternize(sun, 0.5)
+        self.color_change = 1
+        # sun = self.draw_ngon(ngon, 250, c)
+        # self.patternize(sun, 0.5, 0)
 
     def draw_ngon(self, n, radius, position):
         pi2 = 2 * 3.14
         points = []
         for i in range(n):
-            points.append([cos(i / n * pi2) * radius + position[0], sin(i / n * pi2) * radius + position[1]])
+            points.append([cos((i + .5)/ n * pi2) * radius + position[0], sin((i + .5) / n * pi2) * radius + position[1]])
 
         return points
 
@@ -59,7 +58,7 @@ class results(Screen):
         r = radius + 250
         triangles = []
         for i in range(n):
-            top = [cos((i + 1) / n * pi2) * r + position[0], sin((i+1) / n * pi2) * r + position[1]]
+            top = [cos((i+1) / n * pi2) * r + position[0], sin((i+1) / n * pi2) * r + position[1]]
             if i < n - 1:
                 triangles.append([points[i], points[i+1], top])
             else:
@@ -94,13 +93,16 @@ class results(Screen):
         mirror[1] -= (point[1] - center) * 2  # gap
         return mirror
 
-    def patternize(self, points, pace):
+    def patternize(self, points, pace, n=50):
 
         with self.canvas:
-            Color(.1, .1, .9)
+            if self.color_change:
+                Color(.0, .0, .7)
+            else:
+                Color(.9, .9, .9)
             Line(points=(points+[points[0]]), width=2)
 
-        for i in range(50):
+        for i in range(n):
             # [[x, y], [x, y], [x, y], [x, y]]
 
             if self.too_close(points):
@@ -129,9 +131,9 @@ class results(Screen):
                 self.ss.clear()
                 self.anim_pt = collector[j]
                 self.ss = collector[j]
-                anim = Animation(anim_pt=collector[j + 1], d=.2)
+                anim = Animation(anim_pt=collector[j + 1], d=(5 / (i + 10)))
                 anim.start(self)
-                time.sleep(.3)
+                time.sleep((5 / (i + 10)) + .01)
                 anim.stop(self)
 
         self.ss.clear()
@@ -153,7 +155,10 @@ class results(Screen):
 
         # draw the updated line
         with self.canvas:
-            Color(.9, .9, .9)
+            if self.color_change:
+                Color(.0, .0, .7)
+            else:
+                Color(.9, .9, .9)
             self.line = Line(points=points, width=1)
 
 
@@ -162,7 +167,9 @@ class mazeupdateApp(App):
     Config.set('graphics', 'height', '1080')
 
     def build(self):
-        FadeTransition.clearcolor = (1,1,1,1)
+        from kivy.core.window import Window
+        Window.clearcolor = (.0, .0, .7, .9)
+        FadeTransition.clearcolor = (0, 0, 1, 1)
         sm = ScreenManager(transition=FadeTransition())
         sm.add_widget(results(name='one'))
         return sm
