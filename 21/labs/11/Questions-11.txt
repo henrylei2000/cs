@@ -1,0 +1,35 @@
+CS 21 Lab 11 
+
+Name:
+
+Approximately how many hours did you take to complete this lab?
+Provide your answer as a single integer on the "hours:" line below.
+
+hours:
+
+How difficult did you find this lab?
+(1-5, with 5 being very difficult and 1 being very easy)
+
+difficulty:
+
+
+Describe the biggest challenge you faced on this lab:
+
+
+
+
+
+Short-answer questions:
+
+1. For the Yard objects, which instance variable stores the "size"
+   of the yard (how many items it can hold)?
+
+
+2. For the Store objects, what method adds an item to the store,
+   and what instance variable does that method change?
+
+
+3. In all of our class files, what does the "self" parameter do?
+
+
+4. Which are better, dogs or cats?

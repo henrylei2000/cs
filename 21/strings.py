@@ -100,7 +100,7 @@ print('%30s' % "My name is...")
 fruit = "ram12322"
 def f():
     """
-      >>> type(fruit)
+      >>> style(fruit)
       <class 'str'>
       >>> len(fruit)
       8

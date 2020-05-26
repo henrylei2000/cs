@@ -24,11 +24,11 @@ simple example, here is a complete program to draw a circle of radius
 from graphics import *
 
 def main():
-    window = GraphWin("My Circle", 100, 100)
+    win = GraphWin("My Circle", 100, 100)
     c = Circle(Point(50,50), 10)
-    c.draw(window)
-    window.getMouse() # Pause to view result
-    window.close()    # Close window when done
+    c.draw(win)
+    win.getMouse() # Pause to view result
+    win.close()    # Close window when done
 
 main()
 --------------------------------------------------------------------
@@ -43,7 +43,7 @@ The library provides the following graphical objects:
     Rectangle
     Polygon
     Text
-    Entry (for text-based incoming_list)
+    Entry (for text-based input)
     Image
 
 Various attributes of graphical objects can be set such as
@@ -71,7 +71,7 @@ __version__ = "5.0"
 
 # Version 4.3 4/25/2014
 #     * Fixed Image getPixel to work with Python 3.4, TK 8.6 (tuple style handling)
-#     * Added interactive keyboard incoming_list (getKey and checkKey) to GraphWin
+#     * Added interactive keyboard input (getKey and checkKey) to GraphWin
 #     * Modified setCoords to cause redraw of current objects, thus
 #       changing the view. This supports scrolling around via setCoords.
 #
@@ -250,7 +250,6 @@ class GraphWin(tk.Canvas):
 
     def _onKey(self, evnt):
         self.lastKey = evnt.keysym
-
 
     def setBackground(self, color):
         """Set background color of the window"""
