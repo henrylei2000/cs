@@ -1,5 +1,5 @@
 """
-experiments for variable and type print
+experiments for variable and style print
 """
 
 import sys
