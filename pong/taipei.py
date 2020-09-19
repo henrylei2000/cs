@@ -9,7 +9,8 @@ import threading
 from random import random as r
 
 class results(Screen):
-    color = NumericProperty(0)
+    speed = NumericProperty(0.0)
+    wid = NumericProperty(0)
     anim_pt = ListProperty([])    # this is the line endpoint
     ss = ListProperty([])
 
@@ -17,14 +18,13 @@ class results(Screen):
         self.start_daemon()
 
     def start_daemon(self, *args):
-        self.color = 0.65
         t = threading.Thread(target=self.draw)  # initiate the thread
         t.daemon = True  # daemon thread so it terminates when stopping the main thread
         t.start()
 
     def draw(self):
         bottom = 130
-        p1 = [2, 130]
+        p1 = [0, 130]
         p2 = [42, 130]
         p3 = [42, 160]
         p4 = [12, 170]
@@ -107,12 +107,26 @@ class results(Screen):
         x, y = base[0], base[1]
 
         b9 = [[x+15, y], [x+15, y+2], [x+30, y+2], [x+30, y+30], [x+55, y+30], [x+70, y+45], [x+85, y+30],
-              [x+110, y+30], [x+110, bottom]]
+              [x+110, y+30], [x+110, bottom], [x+180, bottom]]
         points += b9
 
-        self.patternize(points, 0, False)
 
-        self.color = 0.1
+        # enlarge points
+        for p in points:
+            p[0] += 50
+            p[0] *= 2
+            p[1] *= 2
+
+        points[0][0] = 0
+
+        self.speed = 5.55
+        self.wid = 3
+        self.patternize(points, 0, False)
+        self.speed = 0.4
+        self.wid = 5
+        self.patternize(points, 0, False)
+        self.speed = 0.4
+        self.wid = 5
         self.patternize(points, 0, False)
 
     def mirror(self, points, center):
@@ -159,9 +173,9 @@ class results(Screen):
                 self.ss.clear()
                 self.anim_pt = collector[j]
                 self.ss = collector[j]
-                anim = Animation(anim_pt=collector[j + 1], d=0.55)
+                anim = Animation(anim_pt=collector[j + 1], d=self.speed)
                 anim.start(self)
-                time.sleep(.6)
+                time.sleep(self.speed + 0.05)
                 anim.stop(self)
 
         self.ss.clear()
@@ -183,9 +197,11 @@ class results(Screen):
 
         # draw the updated line
         with self.canvas:
-            Color(self.color, .6, .6)
-            Color(r(), r(), r())
-            self.line = Line(points=points, width=4)
+            if self.speed > 0.5:
+                Color(.6, .6, .6)
+            else:
+                Color(r(), r(), r())
+            self.line = Line(points=points, width=int(self.wid))
 
 
 class mazeupdateApp(App):

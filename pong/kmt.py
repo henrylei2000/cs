@@ -23,10 +23,13 @@ class results(Screen):
         t.start()
 
     def draw(self):
-        c = (960, 540)  # center
+
+        time.sleep(5)
+
+        c = (1920, 1080)  # center
         ngon = 12
 
-        triangles = self.draw_triangle(ngon, 250, c)
+        triangles = self.draw_triangle(ngon, 500, c)
         for i in range(len(triangles)):
             self.patternize(triangles[i], 0.1)
 
@@ -55,7 +58,7 @@ class results(Screen):
             else:
                 inner_triangles.append([points[i], points[0], position])
 
-        r = radius + 250
+        r = radius + 500
         triangles = []
         for i in range(n):
             top = [cos((i+1) / n * pi2) * r + position[0], sin((i+1) / n * pi2) * r + position[1]]
@@ -93,7 +96,7 @@ class results(Screen):
         mirror[1] -= (point[1] - center) * 2  # gap
         return mirror
 
-    def patternize(self, points, pace, n=50):
+    def patternize(self, points, pace, n=15):
 
         with self.canvas:
             if self.color_change:
@@ -131,9 +134,9 @@ class results(Screen):
                 self.ss.clear()
                 self.anim_pt = collector[j]
                 self.ss = collector[j]
-                anim = Animation(anim_pt=collector[j + 1], d=(5 / (i + 10)))
+                anim = Animation(anim_pt=collector[j + 1], d=(4 / (i + 5)))
                 anim.start(self)
-                time.sleep((5 / (i + 10)) + .01)
+                time.sleep((4 / (i + 5)) + .03)
                 anim.stop(self)
 
         self.ss.clear()
@@ -159,7 +162,7 @@ class results(Screen):
                 Color(.0, .0, .7)
             else:
                 Color(.9, .9, .9)
-            self.line = Line(points=points, width=1)
+            self.line = Line(points=points, width=2)
 
 
 class mazeupdateApp(App):
