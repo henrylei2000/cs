@@ -46,12 +46,13 @@ def sentiment():
     print('Negative :', neg_word_list)
 
 
-def word_polarity(test_subset):
+def word_polarity(text):
+    words = text.split(' ')
     pos_word_list=[]
     neu_word_list=[]
     neg_word_list=[]
 
-    for word in test_subset:
+    for word in words:
         testimonial = TextBlob(word)
         if testimonial.sentiment.polarity >= 0.5:
             pos_word_list.append(word)
@@ -71,13 +72,14 @@ def sentence_polarity(text):
 
 
 def main():
-    text = "I hate Monday but I love California"
+    text = "Today, I announced two of the LARGEST grants in history to Puerto Rico to rebuild its electrical" \
+           " grid system" \
+           " and education system. My Administration will be awarding $13 BILLION through FEMA – the largest " \
+           "obligations of funding ever awarded..."
+
     sentence_polarity(text)
+    word_polarity(text)
     print(textblob_adj(text))
-    # sentiment()
-    word_polarity(['20170412', 'great', 'bad', 'terrible', 'dog', 'stop', 'good'])
-    blob3 = TextBlob("I hate Monday but I love California")
-    print(format(blob3.sentiment))
 
 
 main()
