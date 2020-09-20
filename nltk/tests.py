@@ -7,6 +7,7 @@ import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from collections import Counter
+import tweepy
 
 def textblob_adj(text):
     blobed = TextBlob(text)
@@ -17,21 +18,22 @@ def textblob_adj(text):
     adv_tag_list = ['RB', 'RBR', 'RBS']
     for (a, b) in blobed.tags:
         if b in adj_tag_list:
-           adj_list.append(a)
+            adj_list.append(a)
         elif b in adv_tag_list:
-           adv_list.append(a)
+            adv_list.append(a)
         else:
             pass
-    return adj_list, adv_list, counts['JJ']+counts['JJR']+counts['JJS'], counts['RB']+counts['RBR']+counts['RBS']
+    return adj_list, adv_list, counts['JJ'] + counts['JJR'] + counts['JJS'], counts['RB'] + counts['RBR'] + counts[
+        'RBS']
 
 
 def sentiment():
-    test_subset=['20170412', 'great', 'bad', 'terrible', 'dog', 'stop', 'good']
+    test_subset = ['20170412', 'great', 'bad', 'terrible', 'dog', 'stop', 'good']
 
     sid = SentimentIntensityAnalyzer()
-    pos_word_list=[]
-    neu_word_list=[]
-    neg_word_list=[]
+    pos_word_list = []
+    neu_word_list = []
+    neg_word_list = []
 
     for word in test_subset:
         if (sid.polarity_scores(word)['compound']) >= 0.5:
@@ -48,9 +50,9 @@ def sentiment():
 
 def word_polarity(text):
     words = text.split(' ')
-    pos_word_list=[]
-    neu_word_list=[]
-    neg_word_list=[]
+    pos_word_list = []
+    neu_word_list = []
+    neg_word_list = []
 
     for word in words:
         testimonial = TextBlob(word)
@@ -68,18 +70,28 @@ def word_polarity(text):
 
 def sentence_polarity(text):
     testimonial = TextBlob(text)
-    print(format(testimonial.sentiment))
+    return format(testimonial.sentiment)
+
+
+def get_tweets():
+    key = "HKJF3rdUcTflkEhSstSIaJEtK"
+    secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
+    auth = tweepy.AppAuthHandler(key, secret)
+    api = tweepy.API(auth)
+    #api.update_status("Look, I'm tweeting from #Python.")
+    api = tweepy.API(auth)
+
+    tweets = []
+    for tweet in tweepy.Cursor(api.user_timeline, id="realDonaldTrump").items(10):
+        tweets.append(tweet.text)
+
+    return tweets
 
 
 def main():
-    text = "Today, I announced two of the LARGEST grants in history to Puerto Rico to rebuild its electrical" \
-           " grid system" \
-           " and education system. My Administration will be awarding $13 BILLION through FEMA – the largest " \
-           "obligations of funding ever awarded..."
+    for text in get_tweets():
+        print("%-160s   %s" % (text, sentence_polarity(text)))
 
-    sentence_polarity(text)
-    word_polarity(text)
-    print(textblob_adj(text))
 
 
 main()
