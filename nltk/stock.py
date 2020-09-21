@@ -1,4 +1,4 @@
-import yfinance as yf
+import yfinance as yf   # lxml is required for the functions
 
 msft = yf.Ticker("MSFT")
 print(msft)
