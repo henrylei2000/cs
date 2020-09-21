@@ -1,4 +1,4 @@
-from graphics import *                                # import everything from the graphics library
+from cs.graphics import *                                # import everything from the graphics library
 
 
 def draw_house(x, y, window):

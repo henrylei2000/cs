@@ -4,7 +4,7 @@
  Spring 2020
 """
 
-from graphics import *                                # import everything from the graphics library
+from cs.graphics import *                                # import everything from the graphics library
 
 
 def draw_face(x, y, window):

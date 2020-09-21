@@ -7,7 +7,7 @@ Henry Lei
 03/01/2020
 """
 
-from graphics import *
+from cs.graphics import *
 
 
 def makeCircle(win, center, radius, color):

@@ -1,4 +1,4 @@
-from graphics import *
+from cs.graphics import *
 from random import randint
 from time import sleep
 
