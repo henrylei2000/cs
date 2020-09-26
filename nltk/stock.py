@@ -1,6 +1,6 @@
 import yfinance as yf   # lxml is required for the functions
 
-msft = yf.Ticker("MSFT")
+msft = yf.Ticker("AAPL")
 print(msft)
 """
 returns

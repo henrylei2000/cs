@@ -8,6 +8,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from collections import Counter
 import tweepy
+import twint
 from graphics import *
 
 
@@ -75,6 +76,24 @@ def sentence_polarity(text):
     return testimonial.sentiment.polarity, testimonial.sentiment.subjectivity
 
 
+def search_tweets():
+    key = "HKJF3rdUcTflkEhSstSIaJEtK"
+    secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
+    auth = tweepy.AppAuthHandler(key, secret)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
+    # api.update_status("Look, I'm tweeting from #Python.")
+
+    tweets = []
+    for tweet in tweepy.Cursor(api.search,
+                       q="google",
+                       rpp=100,
+                       result_type="recent",
+                       include_entities=True,
+                       lang="en").items():
+        tweets.append(tweet)
+
+    return tweets
+
 def get_tweets(user):
     key = "HKJF3rdUcTflkEhSstSIaJEtK"
     secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
@@ -91,8 +110,47 @@ def get_tweets(user):
     return tweets
 
 
+def get_tweets_date(user, since, until):
+    key = "HKJF3rdUcTflkEhSstSIaJEtK"
+    secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
+    auth = tweepy.AppAuthHandler(key, secret)
+    api = tweepy.API(auth)
+    #api.update_status("Look, I'm tweeting from #Python.")
+    api = tweepy.API(auth)
+    page = 1
+    stop_loop = False
+    while not stop_loop:
+        print('.' + str(page) + '.')
+        tweets = api.user_timeline(user, page=page)
+        if not tweets:
+            break
+        for tweet in tweets:
+            if since < tweet.created_at < until and text.lang == 'en':
+                print("%-160s   %s" % (tweet.text, tweet.created_at))
+                stop_loop = True
+                break
+            # Do the tweet process here
+
+        page += 1
+        time.sleep(500)
+
+
+def twint_get():
+    # Configure
+    config = twint.Config()
+    config.Username = "realDonaldTrump"
+    config.Since = "2019–01–01"
+    config.Until = "2019–01–31"
+    config.Store_json = True
+    config.Output = "custom_out.json"
+    # Run
+    twint.run.Search(config)
+
+
 def draw(user, color, win):
     i = 0
+    start = datetime.datetime(2020, 6, 1, 0, 0, 0)
+    end = datetime.datetime(2020, 6, 2, 0, 0, 0)
     for text in get_tweets(user):
         sentiment = sentence_polarity(text)
         print("%-160s   %s" % (text, sentiment))
@@ -103,7 +161,7 @@ def draw(user, color, win):
         n.draw(win)
         i += 1
 
-def main():
+def main2():
     win_w = 900
     win_h = 900
     win = GraphWin("frog", win_w, win_h)  # make a graphics window
@@ -113,10 +171,15 @@ def main():
     l.setWidth(1)
     l.setFill(color_rgb(80, 80, 80))
     l.draw(win)
-    draw("JustinTrudeau", color_rgb(10, 10, 10), win)
-    draw("RealDonaldTrump", color_rgb(200, 10, 10), win)
-    draw("iingwen", color_rgb(10, 160, 10), win)
+
+    #draw("JustinTrudeau", color_rgb(10, 10, 10), win)
+    draw("RealDonaldTrump", color_rgb(100, 10, 10), win)
     win.getMouse()
+
+
+def main():
+    get_tweets_date("JustinTrudeau", datetime.datetime(2020, 1, 1), datetime.datetime(2020, 2, 1))
+    #twint_get()
 
 
 if __name__ == "__main__":
