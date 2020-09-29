@@ -94,6 +94,7 @@ def search_tweets():
 
     return tweets
 
+
 def get_tweets(user):
     key = "HKJF3rdUcTflkEhSstSIaJEtK"
     secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
@@ -105,7 +106,7 @@ def get_tweets(user):
     tweets = []
     for tweet in tweepy.Cursor(api.user_timeline, id=user).items(100):
         if tweet.lang == 'en':
-            tweets.append(tweet.text)
+            tweets.append(tweet)
 
     return tweets
 
@@ -139,8 +140,8 @@ def twint_get():
     # Configure
     config = twint.Config()
     config.Username = "realDonaldTrump"
-    config.Since = "2019–01–01"
-    config.Until = "2019–01–31"
+    config.Since = "2020-01-01"
+    config.Until = "2020-01-31"
     config.Store_json = True
     config.Output = "custom_out.json"
     # Run
@@ -178,8 +179,10 @@ def main2():
 
 
 def main():
-    get_tweets_date("JustinTrudeau", datetime.datetime(2020, 1, 1), datetime.datetime(2020, 2, 1))
-    #twint_get()
+    ts = get_tweets("RealDonaldTrump")
+    for t in ts:
+        sentiment = sentence_polarity(t.text)
+        print("%-25s %-10.2f %-10.2f" % (str(t.created_at), sentiment[0], sentiment[1]))
 
 
 if __name__ == "__main__":
