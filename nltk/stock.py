@@ -9,7 +9,7 @@ import pandas as pd
 
 # Tickers list
 # We can add and delete any ticker from the list to get desired ticker live data
-ticker_list = ['^GSPC']
+ticker_list = ['^GSPC', '^IXIC', 'AAPL']
 today = date.today()
 
 # We can get data by our choice by giving days bracket
@@ -20,7 +20,7 @@ files = []
 
 def getData(ticker):
     print(ticker)
-    data = pdr.get_data_yahoo(ticker, start=start_date, end=today)
+    data = pdr.get_data_yahoo(ticker, start=start_date, end=end_date)
     dataname = ticker+'_'+str(today)
     files.append(dataname)
     SaveData(data, dataname)
