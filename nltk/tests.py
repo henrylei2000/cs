@@ -10,6 +10,7 @@ from collections import Counter
 import tweepy
 import twint
 from graphics import *
+import stock
 
 
 def textblob_adj(text):
@@ -179,10 +180,11 @@ def main2():
 
 
 def main():
+    stock.get_stocks()
     ts = get_tweets("RealDonaldTrump")
     for t in ts:
         sentiment = sentence_polarity(t.text)
-        print("%-25s %-10.2f %-10.2f" % (str(t.created_at), sentiment[0], sentiment[1]))
+        print("%-160s %-25s %-10.2f %-10.2f" % (t.text, str(t.created_at), sentiment[0], sentiment[1]))
 
 
 if __name__ == "__main__":
