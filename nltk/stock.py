@@ -16,13 +16,13 @@ def getData(ticker, start_date, end_date):
 
 # Create a data folder in your current dir.
 def SaveData(df, filename):
-    #df.to_csv('./data/'+filename+'.csv')
-    #df.columns = [''] * len(df.columns)
+    # df.to_csv('./data/'+filename+'.csv')
 
     # for i in range(0, 11):
     #     df1 = pd.read_csv('./data/' + str(files[i])+'.csv')
     # print(df1.head())
 
+    # df.columns = [''] * len(df.columns)
     print(df)
 
 
@@ -39,7 +39,7 @@ def get_stocks():
     end_date = "2020-09-30"
     files = []
 
-    #This loop will iterate over ticker list, will pass one ticker to get data, and save that data as file.
+    # This loop will iterate over ticker list, will pass one ticker to get data, and save that data as file.
     for tik in ticker_list:
         getData(tik, start_date, today)
 

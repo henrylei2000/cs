@@ -101,12 +101,12 @@ def get_tweets(user):
     secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
     auth = tweepy.AppAuthHandler(key, secret)
     api = tweepy.API(auth)
-    #api.update_status("Look, I'm tweeting from #Python.")
+    # api.update_status("Look, I'm tweeting from #Python.")
     api = tweepy.API(auth)
 
     tweets = []
     for tweet in tweepy.Cursor(api.user_timeline, id=user).items(100):
-        if tweet.lang == 'en':
+        if tweet.lang == 'en' and not tweet.retweeted and 'RT @' not in tweet.text:
             tweets.append(tweet)
 
     return tweets
