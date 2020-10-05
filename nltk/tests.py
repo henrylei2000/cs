@@ -182,6 +182,8 @@ def main2():
 
 def main():
     ts = get_tweets("RealDonaldTrump")
+    file = open('trump_sp500.csv', 'a')
+    file.write("Sentiment, Subjectivity, Price Change\n")
     for t in ts:
         sentiment = sentence_polarity(t.text)
         today = datetime.date.today()
@@ -191,7 +193,10 @@ def main():
             next_day = t.created_at.date() + datetime.timedelta(days=1)
             delta = stock.get_data("^GSPC", tweet_day, next_day)
             if delta != 999:
-                print("%-10.2f %-10.2f %-10.5f" % (sentiment[0], sentiment[1], delta))
+                line = "%.2f, %.2f, %.5f\n" % (sentiment[0], sentiment[1], delta)
+                print(line)
+                file.write(line)
+    file.close()
 
 
 if __name__ == "__main__":
