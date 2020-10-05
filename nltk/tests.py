@@ -117,7 +117,7 @@ def get_tweets_date(user, since, until):
     secret = "TUUUqOwVZWIYiRENmKJzJpIqDV4CNMtYRpiei5CjbgRGeHPUfM"
     auth = tweepy.AppAuthHandler(key, secret)
     api = tweepy.API(auth)
-    #api.update_status("Look, I'm tweeting from #Python.")
+    # api.update_status("Look, I'm tweeting from #Python.")
     api = tweepy.API(auth)
     page = 1
     stop_loop = False
@@ -163,6 +163,7 @@ def draw(user, color, win):
         n.draw(win)
         i += 1
 
+
 def main2():
     win_w = 900
     win_h = 900
@@ -174,17 +175,22 @@ def main2():
     l.setFill(color_rgb(80, 80, 80))
     l.draw(win)
 
-    #draw("JustinTrudeau", color_rgb(10, 10, 10), win)
+    # draw("JustinTrudeau", color_rgb(10, 10, 10), win)
     draw("RealDonaldTrump", color_rgb(100, 10, 10), win)
     win.getMouse()
 
 
 def main():
-    stock.get_stocks()
     ts = get_tweets("RealDonaldTrump")
     for t in ts:
         sentiment = sentence_polarity(t.text)
-        print("%-160s %-25s %-10.2f %-10.2f" % (t.text, str(t.created_at), sentiment[0], sentiment[1]))
+        today = datetime.date.today()
+        day_until = today - datetime.timedelta(days=2)
+        tweet_day = t.created_at.date()
+        if tweet_day < day_until:
+            next_day = t.created_at.date() + datetime.timedelta(days=1)
+            stock.get_stock("^GSPC", tweet_day, next_day)
+            print("%-160s %-25s %-10.2f %-10.2f" % (t.text, str(t.created_at), sentiment[0], sentiment[1]))
 
 
 if __name__ == "__main__":

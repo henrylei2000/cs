@@ -1,7 +1,7 @@
 import yfinance as yf   # lxml is required for the functions
 
 from pandas_datareader import data as pdr
-from datetime import date
+import datetime
 import yfinance as yf
 import pandas as pd
 
@@ -26,22 +26,34 @@ def SaveData(df, filename):
     print(df)
 
 
+def get_stock(ticker, start, day):
+    print(start)
+    day_before = day - datetime.timedelta(days=1)
+    getData(ticker, start, day)
+
+
 def get_stocks():
     # Tickers list
     # We can add and delete any ticker from the list to get desired ticker live data
     # yf.pdr_override()
 
     ticker_list = ['^GSPC', '^IXIC', 'AAPL']
-    today = date.today()
+    today = datetime.date.today()
+    yesterday = today - datetime.timedelta(days=1)
+
+    date_time_str = '18/09/19 01:55:19'
+
+    date_time_obj = datetime.datetime.strptime(date_time_str, '%d/%m/%y %H:%M:%S')
+    print(date_time_obj)
 
     # We can get data by our choice by giving days bracket
     start_date = "2020-09-01"
-    end_date = "2020-09-30"
+    end_date = "2020-09-01"
     files = []
 
     # This loop will iterate over ticker list, will pass one ticker to get data, and save that data as file.
     for tik in ticker_list:
-        getData(tik, start_date, today)
+        getData(tik, yesterday, today)
 
 
 def main():
