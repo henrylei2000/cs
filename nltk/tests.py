@@ -105,7 +105,7 @@ def get_tweets(user):
     api = tweepy.API(auth)
 
     tweets = []
-    for tweet in tweepy.Cursor(api.user_timeline, id=user).items(100):
+    for tweet in tweepy.Cursor(api.user_timeline, id=user).items(1000):
         if tweet.lang == 'en' and not tweet.retweeted and 'RT @' not in tweet.text:
             tweets.append(tweet)
 
@@ -189,8 +189,9 @@ def main():
         tweet_day = t.created_at.date()
         if tweet_day < day_until:
             next_day = t.created_at.date() + datetime.timedelta(days=1)
-            stock.get_stock("^GSPC", tweet_day, next_day)
-            print("%-160s %-25s %-10.2f %-10.2f" % (t.text, str(t.created_at), sentiment[0], sentiment[1]))
+            delta = stock.get_data("^GSPC", tweet_day, next_day)
+            if delta != 999:
+                print("%-10.2f %-10.2f %-10.5f" % (sentiment[0], sentiment[1], delta))
 
 
 if __name__ == "__main__":
